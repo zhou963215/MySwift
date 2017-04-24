@@ -11,11 +11,11 @@ import UIKit
 class HYTitleStyle {
 
     var titleHeight : CGFloat = 44
-    var normalColor : UIColor = .black
-    var selectColor :UIColor = .orange
+    var normalColor : UIColor = UIColor(r: 0, g: 0, b: 0)
+    var selectColor : UIColor =  UIColor(r: 255, g: 127, b: 0)
     var fontSize :CGFloat = 15.0
     
-    var isScrollEnabel : Bool = false
+    var isScrollEnable : Bool = false
     var itemMargin : CGFloat = 30
     
 }

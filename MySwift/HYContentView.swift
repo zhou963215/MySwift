@@ -8,11 +8,23 @@
 
 import UIKit
 private let kContenViewCellID = "kContenViewCellID"
+
+
+protocol HYContentViewDelegate : class {
+    
+    func contentView(_ contentView : HYContentView , targetIndex : Int)
+    func contentView(_ contentView : HYContentView , targetIndex : Int , progress : CGFloat)
+    
+}
+
 class HYContentView: UIView {
 
+    weak var delegate : HYContentViewDelegate?
+    
     fileprivate var childVcs : [UIViewController]
     fileprivate var parentVC : UIViewController
     
+    fileprivate var  startOffsetX : CGFloat = 0
     fileprivate lazy var collectionView : UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -23,6 +35,12 @@ class HYContentView: UIView {
         
         let collectionView = UICollectionView (frame:self.bounds,collectionViewLayout:layout)
         collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kContenViewCellID)
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
+        collectionView.scrollsToTop = false
+
        return collectionView
     }()
     
@@ -34,11 +52,7 @@ class HYContentView: UIView {
         
         super .init(frame: frame)
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kContenViewCellID)
-        collectionView.isPagingEnabled = true
-        collectionView.bounces = false
-        collectionView.scrollsToTop = false
-        setupUI()
+               setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -93,15 +107,100 @@ extension HYContentView:UICollectionViewDataSource{
     
 }
 
+
+// MARK:- UICollectionView的delegate
+
+
+extension HYContentView : UICollectionViewDelegate{
+    
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+      contentEndScroll()
+    }
+    
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if !decelerate {
+            
+            contentEndScroll()
+        }
+    }
+    
+    private func contentEndScroll(){
+        
+        //1.获取滚动到的位置
+        
+        let currentIndex = Int(collectionView.contentOffset.x / collectionView.bounds.width)
+        
+        //通知titleView进行调整
+        
+        delegate?.contentView(self, targetIndex: currentIndex)
+        
+        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        startOffsetX = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //判断和开始的偏移量是否一致
+        guard startOffsetX != scrollView.contentOffset.x else {
+            
+            return
+        }
+        
+        //定义targentIndex/progress
+        
+        var targetIndex = 0
+        var progress : CGFloat = 0.0
+        
+        //给targetIndex/Progress赋值
+        let currentIndex = Int(startOffsetX / scrollView.bounds.width)
+        
+        if  startOffsetX < scrollView.contentOffset.x { //左滑动
+            
+            targetIndex = currentIndex + 1
+            if targetIndex > childVcs.count - 1 {
+                
+                targetIndex = childVcs.count - 1
+            }
+            
+            progress = (scrollView.contentOffset.x - startOffsetX) / scrollView.bounds.width
+            print(progress)
+        }else{//右滑动
+            
+            targetIndex = currentIndex - 1
+            if targetIndex < 0 {
+                
+                targetIndex = 0
+            }
+           progress = (startOffsetX - scrollView.contentOffset.x) / scrollView.bounds.width
+            print(progress)
+
+        }   
+        
+       delegate?.contentView(self, targetIndex: targetIndex, progress: progress)
+    }
+    
+}
+
+
+
+
+
 extension HYContentView : HYTitleViewDelegate{
     
     
     func titleView(_ titleView: HYTitleView, targetIndex: Int) {
         
         let  indexPath = IndexPath(item: targetIndex, section: 0)
-        
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-        
+        startOffsetX = collectionView.bounds.width * CGFloat(targetIndex)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
         
     }
     

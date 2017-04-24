@@ -14,7 +14,7 @@ class HYPageView: UIView {
     fileprivate var childs : [UIViewController]
     fileprivate var parentVc : UIViewController
     fileprivate var style : HYTitleStyle
-
+    private  var h : CGFloat = 0
     fileprivate var titleView : HYTitleView!
     
     init(frame: CGRect , titles : [String] , childs: [UIViewController] , parentVc : UIViewController, style:HYTitleStyle) {
@@ -42,7 +42,6 @@ extension HYPageView{
     
     
     fileprivate func setupUI(){
-        
         setupTitleView()
         setupConententView()
     }
@@ -67,7 +66,8 @@ extension HYPageView{
         contentView.backgroundColor = UIColor.randomColor()
         
         //让contentView成为titleView的代理
-        titleView.delegete = contentView
+        titleView.delegate = contentView
+        contentView.delegate = titleView
     }
     
 }

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         let titles = ["娱乐","美女","头条","搞笑","游戏","趣玩","虞姬", "鲁班", "孙尚香"]
         let style = HYTitleStyle()
-        style.isScrollEnabel = true
+        style.isScrollEnable = true
         var childVcs = [UIViewController]()
         for _ in 0..<titles.count{
             

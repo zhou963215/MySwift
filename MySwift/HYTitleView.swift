@@ -18,7 +18,7 @@ protocol HYTitleViewDelegate : class {
 
 class HYTitleView: UIView {
 
-    weak var delegete : HYTitleViewDelegate?
+    weak var delegate : HYTitleViewDelegate?
     
     fileprivate var titles: [String]
     fileprivate var style : HYTitleStyle
@@ -31,12 +31,10 @@ class HYTitleView: UIView {
        
        let scrollView = UIScrollView(frame: self.bounds)
         scrollView.showsHorizontalScrollIndicator = false
-
         scrollView.scrollsToTop = false
-
-        
         return scrollView
     }()
+    
     init(frame: CGRect, titles: [String] ,style:HYTitleStyle) {
         
         self.titles = titles
@@ -60,14 +58,14 @@ extension HYTitleView {
         
         addSubview(scrollView)
         
-        setupTieleLabels()
-        setupTitleLabelsFrame()
+        setupTitleLabels()
+        
         setupTitleLabelsFrame()
         
     }
     
     
-    private func setupTieleLabels(){
+    private func setupTitleLabels(){
         
         
         for(i,title)in titles.enumerated(){
@@ -105,7 +103,7 @@ extension HYTitleView {
             var x :CGFloat = 0
             let y :CGFloat = 0
 
-            if style.isScrollEnabel {//可以滚动
+            if style.isScrollEnable {//可以滚动
 
                 
             
@@ -133,7 +131,7 @@ extension HYTitleView {
             
         }
         
-        scrollView.contentSize = style.isScrollEnabel ? CGSize(width: titleLabels.last!.frame.maxX+style.itemMargin*0.5, height: 0) : CGSize.zero
+        scrollView.contentSize = style.isScrollEnable ? CGSize(width: titleLabels.last!.frame.maxX+style.itemMargin*0.5, height: 0) : CGSize.zero
     }
     
     
@@ -142,64 +140,70 @@ extension HYTitleView {
 
 
 
-extension HYTitleView{
-    
-    
-    @objc fileprivate func titleLabelClick(_ tapGes:UITapGestureRecognizer){
-        
+// MARK:- 监听事件
+extension HYTitleView {
+    @objc fileprivate func titleLabelClick(_ tapGes : UITapGestureRecognizer) {
+        // 1.取出用户点击的View
         let targetLabel = tapGes.view as! UILabel
-
+        
+        // 2.调整title
+        adjustTitleLabel(targetIndex: targetLabel.tag)
+        
+        // 3.通知代理
+        delegate?.titleView(self, targetIndex: currentIndex)
+    }
+    
+    fileprivate func adjustTitleLabel(targetIndex : Int) {
+        
+        if targetIndex == currentIndex { return }
+        
+        // 1.取出Label
+        let targetLabel = titleLabels[targetIndex]
         let sourceLabel = titleLabels[currentIndex]
         
-        //切换文字颜色
-        
+        // 2.切换文字的颜色
         targetLabel.textColor = style.selectColor
         sourceLabel.textColor = style.normalColor
         
-        //记录选中的label
-        currentIndex = targetLabel.tag
+        // 3.记录下标值
+        currentIndex = targetIndex
         
-        //通知ContentView进行调整
-        
-        delegete?.titleView(self, targetIndex: currentIndex)
-        
-        //调整位置
-        
-        if style.isScrollEnabel {
-            
+        // 4.调整位置
+        if style.isScrollEnable {
             var offsetX = targetLabel.center.x - scrollView.bounds.width * 0.5
-            
             if offsetX < 0 {
-                
                 offsetX = 0
             }
             if offsetX > (scrollView.contentSize.width - scrollView.bounds.width) {
-                
                 offsetX = scrollView.contentSize.width - scrollView.bounds.width
             }
-            
-            scrollView.setContentOffset(CGPoint(x : offsetX , y : 0 ), animated: true)
-            
+            scrollView.setContentOffset(CGPoint(x: offsetX, y : 0), animated: true)
         }
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
-
+// MARK:- 遵守HYContentViewDelegate
+extension HYTitleView : HYContentViewDelegate {
+    func contentView(_ contentView: HYContentView, targetIndex: Int) {
+        adjustTitleLabel(targetIndex: targetIndex)
+    }
+    
+    func contentView(_ contentView: HYContentView, targetIndex: Int, progress: CGFloat) {
+        // 1.取出Label
+      
+        let targetLabel = titleLabels[targetIndex]
+        let sourceLabel = titleLabels[currentIndex]
+        
+        // 2.颜色渐变
+        let deltaRGB = UIColor.getRGBDelta(style.selectColor, style.normalColor)
+        let selectRGB = style.selectColor.getRGB()
+        let normalRGB = style.normalColor.getRGB()
+        targetLabel.textColor = UIColor(r: normalRGB.0 + deltaRGB.0 * progress, g: normalRGB.1 + deltaRGB.1 * progress, b: normalRGB.2 + deltaRGB.2 * progress)
+        sourceLabel.textColor = UIColor(r: selectRGB.0 - deltaRGB.0 * progress, g: selectRGB.1 - deltaRGB.1 * progress, b: selectRGB.2 - deltaRGB.2 * progress)
+    }
+    
+}
 
 
 
