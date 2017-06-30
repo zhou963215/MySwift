@@ -18,4 +18,8 @@ class HYTitleStyle {
     var isScrollEnable : Bool = false
     var itemMargin : CGFloat = 30
     
+    var scrollLineHeight : CGFloat = 2
+    var isShowScrollLine : Bool = false
+    var scrollLineColor : UIColor = .orange
+
 }

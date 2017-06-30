@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAFE48389A9D99DDAA3AB85B /* Pods_MySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69889E7A4E4D775DADF0E47 /* Pods_MySwift.framework */; };
+		CB120DDC1ED534020031D0AD /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB120DDB1ED534020031D0AD /* Tools.swift */; };
 		CB42F00C1EA9CF1D00A89E5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42F00B1EA9CF1D00A89E5B /* AppDelegate.swift */; };
 		CB42F00E1EA9CF1D00A89E5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42F00D1EA9CF1D00A89E5B /* ViewController.swift */; };
 		CB42F0111EA9CF1D00A89E5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB42F00F1EA9CF1D00A89E5B /* Main.storyboard */; };
@@ -15,10 +17,13 @@
 		CB42F0211EA9CF1D00A89E5B /* MySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42F0201EA9CF1D00A89E5B /* MySwiftTests.swift */; };
 		CB42F02C1EA9CF1D00A89E5B /* MySwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42F02B1EA9CF1D00A89E5B /* MySwiftUITests.swift */; };
 		CB42F03A1EA9D06D00A89E5B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42F0391EA9D06D00A89E5B /* FirstViewController.swift */; };
+		CB5A81ED1F00A7E700E1E1B9 /* UIView-Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5A81EC1F00A7E700E1E1B9 /* UIView-Controller.swift */; };
 		CB6192631EAB4D4B00B160C8 /* HYPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6192621EAB4D4B00B160C8 /* HYPageView.swift */; };
 		CB6192651EAB4F2000B160C8 /* HYTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6192641EAB4F2000B160C8 /* HYTitleView.swift */; };
 		CB6192671EAB506600B160C8 /* HYTitleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6192661EAB506600B160C8 /* HYTitleStyle.swift */; };
 		CB6192691EAB51A000B160C8 /* HYContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6192681EAB51A000B160C8 /* HYContentView.swift */; };
+		CBA7ECE91EFE404F0015CDCD /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA7ECE81EFE404F0015CDCD /* CustomAlertView.swift */; };
+		CBA7ECEB1EFE680A0015CDCD /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA7ECEA1EFE680A0015CDCD /* PopViewController.swift */; };
 		CBD468681EAC5EB500E3C040 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD468671EAC5EB500E3C040 /* UIColor-Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F7032EECFE26C15DF68FDEB /* Pods-MySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySwift/Pods-MySwift.release.xcconfig"; sourceTree = "<group>"; };
+		272C7355B68C03FF71C107E6 /* Pods-MySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySwift/Pods-MySwift.debug.xcconfig"; sourceTree = "<group>"; };
+		A69889E7A4E4D775DADF0E47 /* Pods_MySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB120DDB1ED534020031D0AD /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		CB42F0081EA9CF1D00A89E5B /* MySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB42F00B1EA9CF1D00A89E5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB42F00D1EA9CF1D00A89E5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,10 +63,14 @@
 		CB42F02B1EA9CF1D00A89E5B /* MySwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySwiftUITests.swift; sourceTree = "<group>"; };
 		CB42F02D1EA9CF1D00A89E5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB42F0391EA9D06D00A89E5B /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		CB5A81E61F00A72F00E1E1B9 /* MySwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB5A81EC1F00A7E700E1E1B9 /* UIView-Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-Controller.swift"; sourceTree = "<group>"; };
 		CB6192621EAB4D4B00B160C8 /* HYPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPageView.swift; sourceTree = "<group>"; };
 		CB6192641EAB4F2000B160C8 /* HYTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYTitleView.swift; sourceTree = "<group>"; };
 		CB6192661EAB506600B160C8 /* HYTitleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYTitleStyle.swift; sourceTree = "<group>"; };
 		CB6192681EAB51A000B160C8 /* HYContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYContentView.swift; sourceTree = "<group>"; };
+		CBA7ECE81EFE404F0015CDCD /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		CBA7ECEA1EFE680A0015CDCD /* PopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		CBD468671EAC5EB500E3C040 /* UIColor-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFE48389A9D99DDAA3AB85B /* Pods_MySwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +107,8 @@
 				CB42F01F1EA9CF1D00A89E5B /* MySwiftTests */,
 				CB42F02A1EA9CF1D00A89E5B /* MySwiftUITests */,
 				CB42F0091EA9CF1D00A89E5B /* Products */,
+				FAE94584BC13B00555DB5B0F /* Pods */,
+				D40913DBF8FF8179E02E359A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,12 +128,17 @@
 				CB6192611EAB4D3500B160C8 /* HYPageView */,
 				CB42F00B1EA9CF1D00A89E5B /* AppDelegate.swift */,
 				CB42F00D1EA9CF1D00A89E5B /* ViewController.swift */,
+				CBA7ECE81EFE404F0015CDCD /* CustomAlertView.swift */,
+				CBA7ECEA1EFE680A0015CDCD /* PopViewController.swift */,
+				CB120DDB1ED534020031D0AD /* Tools.swift */,
 				CB42F0391EA9D06D00A89E5B /* FirstViewController.swift */,
 				CBD468671EAC5EB500E3C040 /* UIColor-Extension.swift */,
+				CB5A81EC1F00A7E700E1E1B9 /* UIView-Controller.swift */,
 				CB42F00F1EA9CF1D00A89E5B /* Main.storyboard */,
 				CB42F0121EA9CF1D00A89E5B /* Assets.xcassets */,
 				CB42F0141EA9CF1D00A89E5B /* LaunchScreen.storyboard */,
 				CB42F0171EA9CF1D00A89E5B /* Info.plist */,
+				CB5A81E61F00A72F00E1E1B9 /* MySwift-Bridging-Header.h */,
 			);
 			path = MySwift;
 			sourceTree = "<group>";
@@ -151,6 +172,23 @@
 			name = HYPageView;
 			sourceTree = "<group>";
 		};
+		D40913DBF8FF8179E02E359A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A69889E7A4E4D775DADF0E47 /* Pods_MySwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAE94584BC13B00555DB5B0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				272C7355B68C03FF71C107E6 /* Pods-MySwift.debug.xcconfig */,
+				1F7032EECFE26C15DF68FDEB /* Pods-MySwift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB42F0301EA9CF1D00A89E5B /* Build configuration list for PBXNativeTarget "MySwift" */;
 			buildPhases = (
+				7282B2AD1EA67CEF563BDC97 /* [CP] Check Pods Manifest.lock */,
 				CB42F0041EA9CF1D00A89E5B /* Sources */,
 				CB42F0051EA9CF1D00A89E5B /* Frameworks */,
 				CB42F0061EA9CF1D00A89E5B /* Resources */,
+				E753C592DEA44F90C0A8F551 /* [CP] Embed Pods Frameworks */,
+				18E39D7D9119E5C1507F590D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +261,7 @@
 					CB42F0071EA9CF1D00A89E5B = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 3XE9L9KNNK;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					CB42F01B1EA9CF1D00A89E5B = {
@@ -281,17 +323,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		18E39D7D9119E5C1507F590D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySwift/Pods-MySwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7282B2AD1EA67CEF563BDC97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E753C592DEA44F90C0A8F551 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySwift/Pods-MySwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CB42F0041EA9CF1D00A89E5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA7ECE91EFE404F0015CDCD /* CustomAlertView.swift in Sources */,
 				CB6192631EAB4D4B00B160C8 /* HYPageView.swift in Sources */,
+				CBA7ECEB1EFE680A0015CDCD /* PopViewController.swift in Sources */,
 				CBD468681EAC5EB500E3C040 /* UIColor-Extension.swift in Sources */,
+				CB5A81ED1F00A7E700E1E1B9 /* UIView-Controller.swift in Sources */,
 				CB6192671EAB506600B160C8 /* HYTitleStyle.swift in Sources */,
 				CB42F03A1EA9D06D00A89E5B /* FirstViewController.swift in Sources */,
 				CB6192651EAB4F2000B160C8 /* HYTitleView.swift in Sources */,
 				CB42F00E1EA9CF1D00A89E5B /* ViewController.swift in Sources */,
+				CB120DDC1ED534020031D0AD /* Tools.swift in Sources */,
 				CB6192691EAB51A000B160C8 /* HYContentView.swift in Sources */,
 				CB42F00C1EA9CF1D00A89E5B /* AppDelegate.swift in Sources */,
 			);
@@ -445,8 +539,10 @@
 		};
 		CB42F0311EA9CF1D00A89E5B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 272C7355B68C03FF71C107E6 /* Pods-MySwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XE9L9KNNK;
 				INFOPLIST_FILE = MySwift/Info.plist;
@@ -455,14 +551,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhc.MySwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MySwift/MySwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		CB42F0321EA9CF1D00A89E5B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F7032EECFE26C15DF68FDEB /* Pods-MySwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XE9L9KNNK;
 				INFOPLIST_FILE = MySwift/Info.plist;
@@ -471,6 +571,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhc.MySwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MySwift/MySwift-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

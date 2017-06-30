@@ -23,7 +23,7 @@ class HYTitleView: UIView {
     fileprivate var titles: [String]
     fileprivate var style : HYTitleStyle
     
-    fileprivate lazy var currentIndex : Int = 0
+    fileprivate  var currentIndex : Int = 0
     fileprivate lazy var titleLabels:[UILabel] = [UILabel]()
         
     
@@ -34,6 +34,18 @@ class HYTitleView: UIView {
         scrollView.scrollsToTop = false
         return scrollView
     }()
+    
+    fileprivate lazy var bottomLine : UIView = {
+       
+        let bottomLine = UIView ()
+        bottomLine.backgroundColor = self.style.scrollLineColor
+        bottomLine.frame.size.height = self.style.scrollLineHeight
+        bottomLine.frame.origin.y = self.bounds.height - self.style.scrollLineHeight
+
+        
+        return bottomLine
+    }()
+    
     
     init(frame: CGRect, titles: [String] ,style:HYTitleStyle) {
         
@@ -55,13 +67,17 @@ extension HYTitleView {
     
     
     fileprivate func setupUI(){
-        
+        //添加滑动视图
         addSubview(scrollView)
-        
+        //添加titleLabel
         setupTitleLabels()
-        
+        //设置titleLabel的Frame
         setupTitleLabelsFrame()
-        
+        // 添加滚动条
+        if style.isShowScrollLine {
+            scrollView.addSubview(bottomLine)
+        }
+
     }
     
     
@@ -80,6 +96,7 @@ extension HYTitleView {
             
             scrollView.addSubview(titleLabel)
             titleLabels.append(titleLabel)
+            
             let  tapGes = UITapGestureRecognizer(target: self, action:#selector(titleLabelClick(_:)))
             titleLabel.addGestureRecognizer(tapGes)
             titleLabel.isUserInteractionEnabled = true
@@ -108,11 +125,14 @@ extension HYTitleView {
                 
             
              w = (titles[i] as NSString).boundingRect(with: CGSize(width:CGFloat(MAXFLOAT),height:0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : label.font], context: nil).width
-                
+                    
                 if  i == 0 {
-                    
-                    
                     x = style.itemMargin * 0.5
+                    if style.isShowScrollLine {
+                        
+                        bottomLine.frame.origin.x = x
+                        bottomLine.frame.size.width = w
+                    }
                 }else{
                     
                     let preLabel = titleLabels[i-1]
@@ -124,6 +144,12 @@ extension HYTitleView {
                
                 w = bounds.width / CGFloat(count)
                 x = w * CGFloat(i)
+                
+                if i == 0 && style.isShowScrollLine {
+                    bottomLine.frame.origin.x = 0
+                    bottomLine.frame.size.width = w
+                }
+ 
                 
             }
             
@@ -142,13 +168,26 @@ extension HYTitleView {
 
 // MARK:- 监听事件
 extension HYTitleView {
-    @objc fileprivate func titleLabelClick(_ tapGes : UITapGestureRecognizer) {
+     @objc fileprivate func titleLabelClick(_ tapGes : UITapGestureRecognizer) {
+        
+        
         // 1.取出用户点击的View
         let targetLabel = tapGes.view as! UILabel
         
         // 2.调整title
         adjustTitleLabel(targetIndex: targetLabel.tag)
         
+        if style.isShowScrollLine {
+            
+            UIView.animate(withDuration: 0.25, animations: { 
+                
+                self.bottomLine.frame.origin.x = targetLabel.frame.origin.x
+                self.bottomLine.frame.size.width = targetLabel.frame.width
+
+            })
+        }
+        self.navigationController()? .pushViewController(PopViewController(), animated: true)
+
         // 3.通知代理
         delegate?.titleView(self, targetIndex: currentIndex)
     }
@@ -201,6 +240,15 @@ extension HYTitleView : HYContentViewDelegate {
         let normalRGB = style.normalColor.getRGB()
         targetLabel.textColor = UIColor(r: normalRGB.0 + deltaRGB.0 * progress, g: normalRGB.1 + deltaRGB.1 * progress, b: normalRGB.2 + deltaRGB.2 * progress)
         sourceLabel.textColor = UIColor(r: selectRGB.0 - deltaRGB.0 * progress, g: selectRGB.1 - deltaRGB.1 * progress, b: selectRGB.2 - deltaRGB.2 * progress)
+        
+        // 3.bottomLine渐变过程
+        if style.isShowScrollLine {
+            let deltaX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
+            let deltaW = targetLabel.frame.width - sourceLabel.frame.width
+            bottomLine.frame.origin.x = sourceLabel.frame.origin.x + deltaX * progress
+            bottomLine.frame.size.width = sourceLabel.frame.width + deltaW * progress
+        }
+
     }
     
 }

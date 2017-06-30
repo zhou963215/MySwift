@@ -171,7 +171,6 @@ extension HYContentView : UICollectionViewDelegate{
             }
             
             progress = (scrollView.contentOffset.x - startOffsetX) / scrollView.bounds.width
-            print(progress)
         }else{//右滑动
             
             targetIndex = currentIndex - 1
@@ -180,7 +179,6 @@ extension HYContentView : UICollectionViewDelegate{
                 targetIndex = 0
             }
            progress = (startOffsetX - scrollView.contentOffset.x) / scrollView.bounds.width
-            print(progress)
 
         }   
         
