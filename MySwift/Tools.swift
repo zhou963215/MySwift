@@ -7,6 +7,12 @@
 //
 
 import UIKit
+protocol DDViewDelegate :class {
+    
+    
+    func ddddddd(_ name :String)
+}
+
 
 
 enum HTTPRequestMethod : String {
@@ -17,11 +23,16 @@ enum HTTPRequestMethod : String {
 
 }
 
+
+
 class Tools: NSObject {
 
  
-    
+    weak var delegate : DDViewDelegate?
     var type = HTTPRequestMethod.GET
+    
+
+    
     
     
     public func publicRequset( _ requestMethod : HTTPRequestMethod){
@@ -30,6 +41,7 @@ class Tools: NSObject {
         let addCloser1: (_ num1: Int, _ num2: Int) -> (Int)
         
         //为已经创建好的常量 addCloser1 赋值
+        
         
         addCloser1 = {
             
@@ -76,6 +88,8 @@ class Tools: NSObject {
             DispatchQueue .main.sync {
                 print("回调主线程:\(Thread.current)")
                 self.publicRequset(.POST)
+                
+                self.delegate?.ddddddd("我是代理测试输出")
                 
                 finishedCallbak("123")
             }

@@ -13,14 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
    
         
         let ova = NSClassFromString("UIDebuggingInformationOverlay") as? UIWindow.Type;
         
          _ = ova?.perform(NSSelectorFromString("prepareDebuggingOverlay"))
-        
         
         
         
@@ -52,4 +50,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

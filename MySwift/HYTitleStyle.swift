@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class HYTitleStyle {
 
     var titleHeight : CGFloat = 44

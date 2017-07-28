@@ -59,11 +59,12 @@ class CustomAlertView: UIView {
      override init(frame: CGRect ) {
         
         
-        
 
      super .init(frame: frame)
         
-//        UIApplication.shared.keyWindow? .addSubview(self)
+        
+        
+        UIApplication.shared.keyWindow? .addSubview(self)
         
         setupUI()
 
@@ -74,8 +75,9 @@ class CustomAlertView: UIView {
         addSubview(bgView)
         popView.center = bgView.center
         addSubview(popView)
+        showPop()
+
         setButton()
-        
         
         
     }
@@ -104,7 +106,7 @@ class CustomAlertView: UIView {
         
         
       let cance = UIButton(type: UIButtonType.custom)
-        cance.frame = CGRect(x: item, y: 150, width: y, height: 40)
+//        cance.frame = CGRect(x: item, y: 150, width: y, height: 40)
         cance .setTitle("取消", for: UIControlState.normal)
         cance .setTitleColor(UIColor.red, for: UIControlState.normal)
         cance.titleLabel?.font = UIFont .systemFont(ofSize: 14)
@@ -119,7 +121,7 @@ class CustomAlertView: UIView {
         
         
         let confirm = UIButton(type: UIButtonType.custom)
-        confirm.frame = CGRect(x: item*2+y, y: 150, width: y, height: 40)
+//        confirm.frame = CGRect(x: item*2+y, y: 150, width: y, height: 40)
         confirm .setTitle("确定", for: UIControlState.normal)
         confirm .setTitleColor(UIColor.red, for: UIControlState.normal)
         confirm.titleLabel?.font = UIFont .systemFont(ofSize: 14)
@@ -136,6 +138,7 @@ class CustomAlertView: UIView {
             
             make.centerX.equalTo((self?.popView)!)
             make.top.equalTo((self?.popView)!).offset(10)
+            make.height.equalTo(20)
             
         }
         subject.snp.makeConstraints { [weak self](make) in
@@ -143,16 +146,23 @@ class CustomAlertView: UIView {
             make.left.equalTo((self?.popView)!).offset(10);
             make.right.equalTo((self?.popView)!).offset(-10)
             make.top.equalTo(title.snp.bottom).offset(10)
-//            make.bottom.equalTo(cance.snp.top).offset(-10)
+            make.bottom.equalTo(cance.snp.top).offset(-10)
         }
         
         cance.snp.makeConstraints { [weak self](make) in
             
-          make.bottom.equalTo((self?.popView.snp.bottom)!).offset(-10)
+            make.bottom.equalTo((self?.popView.snp.bottom)!).offset(-10)
             make.left.equalTo(item)
             make.size.equalTo(CGSize(width: y, height: 40))
         
             
+        }
+        
+        confirm.snp.makeConstraints { [weak self](make) in
+            
+            make.bottom.equalTo((self?.popView.snp.bottom)!).offset(-10)
+            make.right.equalTo(-item)
+            make.size.equalTo(cance)
             
         }
         
@@ -208,14 +218,38 @@ extension CustomAlertView{
     }
     
     
+    func  showPop()  {
+        
+        self.popView.layer .setAffineTransform(CGAffineTransform(scaleX: 0.1, y: 0.1))
+        
+        UIView.animate(withDuration: 1, animations: {
+          
+            self.popView.layer .setAffineTransform(CGAffineTransform(scaleX: 1, y: 1))
+
+            
+        }) { (Bool) in
+            
+//            self.popView.layer .setAffineTransform(CGAffineTransform(scaleX: 1.0, y: 1.0))
+
+        }
+        
+        
+    }
+    
     func hiddenSelf() {
         
-        
-        UIView.animate(withDuration: 1.0) {
-            
-            self.bgView .removeFromSuperview()
-            self .removeFromSuperview()
+        self.popView.layer .setAffineTransform(CGAffineTransform(scaleX: 1, y: 1))
 
+        UIView.animate(withDuration: 0.5 ,animations : {
+            
+            self.popView.layer .setAffineTransform(CGAffineTransform(scaleX: 0.1, y: 0.1))
+            
+        }){(Bool)in
+            
+            
+//            self.bgView .removeFromSuperview()
+//            self.popView .removeFromSuperview()
+            self .removeFromSuperview()
             
         }
         

@@ -186,7 +186,6 @@ extension HYTitleView {
 
             })
         }
-        self.navigationController()? .pushViewController(PopViewController(), animated: true)
 
         // 3.通知代理
         delegate?.titleView(self, targetIndex: currentIndex)

@@ -17,6 +17,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        tools.delegate = self
+        
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "弹框", style: .plain, target: self, action:#selector(alertShow))
+        
         automaticallyAdjustsScrollViewInsets = false
         let titles = ["娱乐","美女","头条","搞笑","游戏","趣玩","虞姬", "鲁班", "孙尚香"]
         let style = HYTitleStyle()
@@ -31,7 +37,7 @@ class ViewController: UIViewController {
             
             
         }
-        view.backgroundColor = UIColor.randomColor()
+//        view.backgroundColor = UIColor.randomColor()
         let pageFrame = CGRect(x: 0 , y : 64 , width:view.bounds.width,height:view.bounds.height-64)
         
         let pageView  = HYPageView(frame:pageFrame , titles:titles , childs : childVcs, parentVc:self , style :style)
@@ -46,8 +52,7 @@ class ViewController: UIViewController {
             return s1 > s2
         }
         
-        
-        //普通属性
+              //普通属性
         var firstName:String = ""
         var lastName:String  = ""
         var nickName:String  = ""
@@ -81,35 +86,46 @@ class ViewController: UIViewController {
         print(nickName)
 }
     
+    func ddddddd(){
+        
+        
+        
+    }
     
+    func alertShow() {
+        
+        let customFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        
+        let custom = CustomAlertView(frame: customFrame)
+        
+        custom.studname = {
+            
+            
+            //            self.navigationController? .pushViewController(PopViewController(), animated: true)
+            
+            //           self.view .backgroundColor = UIColor.orange
+        }
+        custom.clickValueSource { (sender) in
+            
+            print("取消当前决定")
+            
+        }
+        custom.confirmValueSource { (sender) in
+            
+            self.navigationController? .pushViewController(PopViewController(), animated: true)
+            
+//            self.view .backgroundColor = UIColor.orange
+            
+            
+        }
+
+        
+        
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         
         view.endEditing(true)
-        let customFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        
-        let custom = CustomAlertView(frame: customFrame)
-        view.addSubview(custom)
-        custom.studname = {
-           
-            
-//            self.navigationController? .pushViewController(PopViewController(), animated: true)
-            
-//           self.view .backgroundColor = UIColor.orange
-        }
-      custom.clickValueSource { (sender) in
-        
-        print("取消当前决定")
-        
-        }
-    custom.confirmValueSource { (sender) in
-        
-        self.navigationController? .pushViewController(PopViewController(), animated: true)
-        
-                   self.view .backgroundColor = UIColor.orange
-
-        
-        }
         
         tools.moer { (a, b) -> (c: Int, chu: Int) in
             
@@ -190,5 +206,15 @@ class ViewController: UIViewController {
 //    }
    
 
-
+extension ViewController:DDViewDelegate{
+    
+    
+    
+    func ddddddd(_ name: String) {
+        print(name)
+    }
+    
+    
+    
+}
 
